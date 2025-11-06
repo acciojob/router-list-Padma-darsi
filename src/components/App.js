@@ -1,54 +1,49 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
 import "./../styles/App.css";
 
-// ItemList component
 const ItemList = () => {
-  const items = [
-    { id: 1, name: "Item 1", description: "Description for Item 1" },
-    { id: 2, name: "Item 2", description: "Description for Item 2" },
-    { id: 3, name: "Item 3", description: "Description for Item 3" },
-  ];
-
   return (
     <div>
       <h1>Item List</h1>
       <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <Link to={`/items/${item.id}`}>{item.name}</Link>
-          </li>
-        ))}
+        <li>
+          <Link to="/items/1">Item 1</Link>
+        </li>
+        <li>
+          <Link to="/items/2">Item 2</Link>
+        </li>
+        <li>
+          <Link to="/items/3">Item 3</Link>
+        </li>
       </ul>
     </div>
   );
 };
 
-// ItemDetail component
 const ItemDetail = () => {
   const { id } = useParams();
-  const itemData = {
+
+  const data = {
     1: { name: "Item 1", description: "Description for Item 1" },
     2: { name: "Item 2", description: "Description for Item 2" },
     3: { name: "Item 3", description: "Description for Item 3" },
   };
 
-  const item = itemData[id];
+  const item = data[id];
 
   return (
     <div>
-      <h1>{item?.name}</h1>
-      <p>{item?.description}</p>
+      <h1>{item.name}</h1>
+      <p>{item.description}</p>
       <Link to="/">Back to List</Link>
     </div>
   );
 };
 
-// App Component
 const App = () => {
   return (
-    <div>
+    <div id="main">
       {/* Do not remove the main div */}
       <Router>
         <Routes>
